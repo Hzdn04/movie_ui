@@ -5,24 +5,46 @@ class TileMovie extends StatelessWidget {
   final String name;
   final String genre;
   final String imageUrl;
-  final double rating;
+  final int rating;
 
   const TileMovie(
       {Key? key,
       required this.name,
       required this.genre,
       required this.imageUrl,
-      this.rating = 0.0})
+      this.rating = 0})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final childrenS = <Widget>[];
+    final childrenSU = <Widget>[];
+
+    for (var i = 0; i < rating; i++) {
+      childrenS.add(Container(
+        width: 18,
+        height: 18,
+        decoration: const BoxDecoration(
+            image:
+                DecorationImage(image: AssetImage('assets/star_active.png'))),
+      ));
+    }
+
+    for (var i = 0; i < 5-rating; i++) {
+      childrenSU.add(Container(
+        width: 18,
+        height: 18,
+        decoration: const BoxDecoration(
+            image: DecorationImage(image: AssetImage('assets/star.png'))),
+      ));
+    }
+
     return GestureDetector(
       onTap: () {},
       child: Container(
         height: 127,
-        margin: EdgeInsets.only(top: 15),
-        padding: EdgeInsets.all(10),
+        margin: const EdgeInsets.only(top: 15),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(18),
@@ -32,7 +54,7 @@ class TileMovie extends StatelessWidget {
             Container(
               width: 100,
               height: 127,
-              margin: EdgeInsets.only(right: 16),
+              margin: const EdgeInsets.only(right: 16),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
                   image: DecorationImage(
@@ -59,43 +81,10 @@ class TileMovie extends StatelessWidget {
                     height: 10,
                   ),
                   Row(
-                    children: [
-                      Container(
-                        width: 18,
-                        height: 18,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('assets/star_active.png'))),
-                      ),
-                      Container(
-                        width: 18,
-                        height: 18,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('assets/star_active.png'))),
-                      ),
-                      Container(
-                        width: 18,
-                        height: 18,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('assets/star_active.png'))),
-                      ),
-                      Container(
-                        width: 18,
-                        height: 18,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('assets/star_active.png'))),
-                      ),
-                      Container(
-                        width: 18,
-                        height: 18,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('assets/star.png'))),
-                      ),
-                    ],
+                    children: childrenS == 5
+                    ? childrenS
+                    : childrenS + childrenSU
+                    ,
                   ),
                 ],
               ),

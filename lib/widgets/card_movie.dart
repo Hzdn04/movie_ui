@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:movie_ui/theme.dart';
@@ -19,10 +18,32 @@ class CardMovie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final childrenS = <Widget>[];
+    final childrenSU = <Widget>[];
+
+    for (var i = 0; i < rating; i++) {
+      childrenS.add(Container(
+        width: 18,
+        height: 18,
+        decoration: const BoxDecoration(
+            image:
+                DecorationImage(image: AssetImage('assets/star_active.png'))),
+      ));
+    }
+
+    for (var i = 0; i < 5 - rating; i++) {
+      childrenSU.add(Container(
+        width: 18,
+        height: 18,
+        decoration: const BoxDecoration(
+            image: DecorationImage(image: AssetImage('assets/star.png'))),
+      ));
+    }
+
     return GestureDetector(
       onTap: () {},
       child: Container(
-        margin: EdgeInsets.only(top: 30),
+        margin: const EdgeInsets.only(top: 30),
         child: Row(
           children: [
             Container(
@@ -37,18 +58,17 @@ class CardMovie extends StatelessWidget {
                   Container(
                     width: 300,
                     height: 207,
-                    margin: EdgeInsets.only(bottom: 19),
+                    margin: const EdgeInsets.only(bottom: 19),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(18),
                         image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(imageUrl))),
-                   ),
+                            fit: BoxFit.cover, image: AssetImage(imageUrl))),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(left: 5),
+                        margin: const EdgeInsets.only(left: 5),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -57,56 +77,23 @@ class CardMovie extends StatelessWidget {
                               style: purpleTextStyle.copyWith(
                                   fontSize: 20, fontWeight: extraBold),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 3,
                             ),
                             Text(
                               genre,
-                              style: greyTextStyle.copyWith(fontWeight: light, fontSize: 16),
+                              style: greyTextStyle.copyWith(
+                                  fontWeight: light, fontSize: 16),
                             )
                           ],
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(right: 5),
+                        margin: const EdgeInsets.only(right: 5),
                         child: Row(
-                          children: [
-                            Container(
-                              width: 18,
-                              height: 18,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(image: AssetImage('assets/star_active.png'))
-                              ),
-                            ),
-                            Container(
-                              width: 18,
-                              height: 18,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(image: AssetImage('assets/star_active.png'))
-                              ),
-                            ),
-                            Container(
-                              width: 18,
-                              height: 18,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(image: AssetImage('assets/star_active.png'))
-                              ),
-                            ),
-                            Container(
-                              width: 18,
-                              height: 18,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(image: AssetImage('assets/star_active.png'))
-                              ),
-                            ),
-                            Container(
-                              width: 18,
-                              height: 18,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(image: AssetImage('assets/star_active.png'))
-                              ),
-                            ),
-                          ],
+                          children: childrenS == 5
+                              ? childrenS
+                              : childrenS + childrenSU,
                         ),
                       ),
                     ],

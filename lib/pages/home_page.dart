@@ -59,7 +59,7 @@ class HomePage extends StatelessWidget {
 
     Widget popularMovie() {
       return Container(
-        margin: const EdgeInsets.only(top: 30),
+        margin: const EdgeInsets.only(top: 18),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
@@ -104,19 +104,19 @@ class HomePage extends StatelessWidget {
               name: 'Mulan Session',
               genre: 'History, War',
               imageUrl: 'assets/mulan.png',
-              rating: 5.0,
+              rating: 4,
             ),
             const TileMovie(
               name: 'Beauty & Beast',
               genre: 'Sci-Fiction',
               imageUrl: 'assets/beauty.png',
-              rating: 5.0,
+              rating: 4,
             ),
             const TileMovie(
               name: 'The Dark Knight',
               genre: 'Heroes',
               imageUrl: 'assets/knight.png',
-              rating: 5.0,
+              rating: 3,
             ),
           ],
         ),
